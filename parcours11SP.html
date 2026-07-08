@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bastide SP- 11 EL TEMPLO</title>
+    <style>
+        /* Force le plein écran noir complet */
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
+            width: 100%; 
+            background-color: #000; 
+            overflow: hidden; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Conteneur pour gérer la superposition */
+        .video-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* La vidéo s'adapte parfaitement */
+        video { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
+        }
+
+        /* Styles pour l'overlay de texte/bouton (apparaît AVANT le play) */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Fond noir semi-transparent */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: sans-serif;
+            z-index: 10; /* Assure que le texte est au-dessus */
+            cursor: pointer; /* Indique que c'est cliquable */
+            transition: opacity 0.5s ease; /* Animation de disparition */
+        }
+
+        /* Icône de Play */
+        .play-icon {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .play-icon::before {
+            content: '';
+            border-style: solid;
+            border-width: 20px 0 20px 30px;
+            border-color: transparent transparent transparent black;
+            margin-left: 5px;
+        }
+
+        /* Texte d'instruction */
+        .instruction-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 0 20px;
+            max-width: 80%;
+        }
+
+        /* Classe pour cacher l'overlay une fois le play activé */
+        .video-overlay.hidden {
+            opacity: 0;
+            pointer-events: none; /* Désactive les clics sur l'overlay caché */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="video-container">
+        <!-- L'overlay avec le texte et l'icône Play -->
+        <div id="videoOverlay" class="video-overlay" onclick="playVideo()">
+            <div class="play-icon"></div>
+            <div class="instruction-text">PULSA REPRODUCIR Y GIRA EL TELEFONO HORIZONTALMENTE</div>
+        </div>
+
+        <!-- Le lecteur vidéo -->
+        <video id="myVideo" controls playsinline preload="auto">
+            <source src="https://filedn.eu/l6KtiAI390E7C3a3hKQgTcj/Internet%20les%20tre%CC%81sors%20de%20Zelie%20SP%201080%20p/11%20le%20temple%20SP_1_1.mp4" type="video/mp4"> 
+            Votre navigateur ne supporte pas la lecture de cette vidéo.
+        </video>
+    </div>
+
+    <script>
+        // Fonction JavaScript pour lancer la vidéo et cacher l'overlay
+        function playVideo() {
+            var video = document.getElementById("myVideo");
+            var overlay = document.getElementById("videoOverlay");
+            
+            // Masquer l'overlay
+            overlay.classList.add("hidden");
+            
+            // Lancer la vidéo
+            video.play();
+        }
+    </script>
+
+</body>
+</html>
